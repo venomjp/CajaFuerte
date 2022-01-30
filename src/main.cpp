@@ -49,6 +49,9 @@ unsigned long contador;
 unsigned long tiempoInicio;
 String mensaje="";
 
+//LCD
+LiquidCrystal_I2C lcd (0x3F, 16, 2);  //creo el objeto LCD dir. 0x3F
+
 // SETUP ----------------------------------------
 void setup()
 {
@@ -60,7 +63,10 @@ void setup()
   // inicialización variables de tiempo
   contador = 0;
   tiempoInicio = millis();
-
+  // inicializar LCD
+  lcd.init(); //inicializo
+  lcd.backlight();  //enciendo luz de fondo
+  lcd.print("- Caja Fuerte -");
 
 } //fin_setup
 
@@ -76,6 +82,9 @@ void loop()
   if (tecla){
     mensaje="Tecla: " + tecla;
     Serial.println (mensaje);
+    lcd.setCursor(0,1); //col=0, fila=1 (2ªlinea)
+    lcd.print ("Tecla: ");
+    lcd.print (tecla);
   }
 
 } //fin_loop
