@@ -20,6 +20,7 @@ Componentes:
 #include <Arduino.h>
 #include <Servo.h>
 #include <Keypad.h>
+#include <LiquidCrystal_I2C.h>
 
 // DEFINES Y CONSTANTES -------------------------
 #define servo 10         // pin de conexión del servo
@@ -46,7 +47,7 @@ Keypad teclado = Keypad(makeKeymap(keys), pinesFilas, pinesColumnas, FILAS, COLU
 
 unsigned long contador;
 unsigned long tiempoInicio;
-String estado;
+String mensaje="";
 
 // SETUP ----------------------------------------
 void setup()
@@ -55,11 +56,11 @@ void setup()
   cerradura.attach(servo); // pin en el que se conecta el servo
   // inicialización pto serie ....
   Serial.begin(9600);
+  Serial.println ("Caja Fuerte... iniciando...");
   // inicialización variables de tiempo
   contador = 0;
   tiempoInicio = millis();
-  // inicialización mensaje
-  estado = ""; //vacío
+
 
 } //fin_setup
 
@@ -68,48 +69,13 @@ void loop()
 {
 
   //cerradura.write(posicion);
-  detectaTecla();
+  
+  //leo tecla
+  char tecla=teclado.getKey();
+  //si hay tecla pulsada la muestro por pto serie
+  if (tecla){
+    mensaje="Tecla: " + tecla;
+    Serial.println (mensaje);
+  }
+
 } //fin_loop
-
-// Funcion DETECTA TECLA -----------------------
-void detectaTecla()
-{
-
-  contador++;
-  if ((millis() - tiempoInicio) > 5000)
-  {
-    Serial.print("Bucles por segundo = ");
-    Serial.println(contador / 5);
-    tiempoInicio = millis();
-    contador = 0;
-  }
-
-  // Rellena la matriz kpd.key[ ]
-  // Devuelve true si hay alguna tecla activa
-  if (teclado.getKeys())
-  {
-    for (int i = 0; i < LIST_MAX; i++) // Escanea en la lista de teclas
-    {
-      if (teclado.key[i].stateChanged) // Solo encuentra teclas que han cambiado de estado
-      {
-        switch (kpd.key[i].kstate)
-        { // Devuelve el estado de la tecla: LIBRE, PRESIONADA, MANTENIDA, o SOLTADA
-        case PRESIONADA:
-          estado = " PRESIONADA.";
-          break;
-        case MANTENIDA:
-          estado = " MANTENIDA.";
-          break;
-        case SOLTADA:
-          estado = " SOLTADA.";
-          break;
-        case LIBRE:
-          estado = " LIBRE.";
-        }
-        Serial.print("Tecla ");
-        Serial.print(teclado.key[i].kchar);
-        Serial.println(estado);
-      }
-    }
-  }
-}
