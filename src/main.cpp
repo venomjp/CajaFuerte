@@ -55,6 +55,8 @@ void setup()
 {
   // inicicialización servo..........................................
   cerradura.attach(servo); // pin en el que se conecta el servo
+  cerradura.write((cerrar+30));
+  delay(100);
   cerradura.write(cerrar);
   // inicialización pto serie .......................................
   Serial.begin(9600);
