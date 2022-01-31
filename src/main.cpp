@@ -27,7 +27,8 @@ Componentes:
 #define ptaCerrada 11       // pin del led Rojo que indica puerta cerrada
 #define ptaAbierta 12       // pin del led Verde que indica puerta abierta
 #define abrir 180           // servo abrir = 180º
-#define cerrar 22            // servo cerrar = 0º
+#define cerrar 22           // servo cerrar = 0º
+#define longPassword 11     // longitud de la password: 10 caracteres
 const byte FILAS = 4;    // 4 FILAS
 const byte COLUMNAS = 4; // 4 COLUMNAS
 
@@ -50,6 +51,21 @@ Keypad teclado = Keypad(makeKeymap(keys), pinesFilas, pinesColumnas, FILAS, COLU
 //LCD ..................................................................
 LiquidCrystal_I2C lcd (0x3F, 16, 2);  //creo el objeto LCD dir. 0x3F
 
+//Variables globales ...................................................
+int contador=0;
+char tecla;
+char datos[longPassword];
+char passMaster[longPassword]="15A6*8D94B";
+bool passCorrecta;
+bool cajaAbierta=false;     //indica caja cerrada
+
+//FUNCIONES
+void limpiarDatos(void);
+void passwordIncorrecta(void);
+void passwordCorrecta(void);
+
+
+
 // SETUP ----------------------------------------
 void setup()
 {
@@ -64,12 +80,15 @@ void setup()
   // inicializar LCD ................................................
   lcd.init(); //inicializo lcd
   lcd.backlight();  //enciendo luz de fondo
+  lcd.setCursor(0,0); //col=0, fila=0 (1ªlinea)
   lcd.print("- Caja Fuerte -");
+  lcd.setCursor(0,1); //col=0, fila=1 (2ªlinea)
+  lcd.print("# to Password");
   // inicialización leds ............................................
   pinMode(ptaAbierta, OUTPUT);    //led puerta abierta como salida
   pinMode(ptaCerrada, OUTPUT);    //led puerta cerrada como salida
   digitalWrite(ptaAbierta,LOW);   //apago led
-  digitalWrite(ptaCerrada,LOW);   //apago led
+  digitalWrite(ptaCerrada,HIGH);  //enciendo led
 
 
 
@@ -79,8 +98,46 @@ void setup()
 void loop()
 {
 
-  //cerradura.write(posicion);
-  
+  //leo tecla
+  tecla=teclado.getKey();
+  if (tecla)
+  {
+    if (tecla=='#'){
+      if (cajaAbierta){
+        //cerrar caja
+        digitalWrite(ptaCerrada, HIGH); //indico led pta cerrada
+        digitalWrite(ptaAbierta, LOW);
+        cerradura.write(cerrar);        //cerrar cerradura
+        cajaAbierta=false;
+      }
+      limpiarDatos();
+    }
+    else{
+      datos[contador]=tecla;
+      lcd.setCursor(contador,1);
+      lcd.print(datos[contador]);
+      contador++;
+    }
+  }
+
+  if (contador==(longPassword-1)){
+    lcd.clear();
+
+    if (!strcmp(datos, passMaster)){
+      //pass correcta
+      passwordCorrecta();
+      cerradura.write(abrir);     //abrir cerradura
+      digitalWrite(ptaAbierta, HIGH);
+      digitalWrite(ptaCerrada, LOW);
+      cajaAbierta=true;
+    }
+    else{
+      //pass incorrecta
+      passwordIncorrecta();
+    }
+    limpiarDatos();
+  }
+/*  
   //leo tecla
   char tecla=teclado.getKey();
   //si hay tecla pulsada la muestro por pto serie
@@ -109,5 +166,42 @@ void loop()
   {
     cerradura.write(cerrar);     //cerrar cerradura
   }
-
+*/
 } //fin_loop
+
+void limpiarDatos()
+{
+  while (contador!=0){
+    datos[contador--] = 0;
+  }
+  lcd.clear();
+  lcd.setCursor(0,0); //col=0, fila=0 (1ªlinea)
+  lcd.print("Introduce 10");
+  lcd.setCursor(0,1); //col=0, fila=1 (2ªlinea)
+  lcd.print("teclas password");
+  delay (5000);
+  lcd.clear();
+  lcd.setCursor(0,0); //col=0, fila=0 (1ªlinea)
+  lcd.print("Password:");
+  return;
+}
+
+void passwordIncorrecta()
+{
+  lcd.clear();
+  lcd.setCursor (0,0);
+  lcd.print("Password");
+  lcd.setCursor (0,1);
+  lcd.print("Incorrecta");
+  delay (2000);
+}
+
+void passwordCorrecta()
+{
+  lcd.clear();
+  lcd.setCursor (0,0);
+  lcd.print("Password");
+  lcd.setCursor (0,1);
+  lcd.print("Correcta!!!!");
+  delay (2000);
+}
