@@ -24,17 +24,19 @@ Componentes:
 
 // DEFINES Y CONSTANTES -------------------------
 #define servo 10         // pin de conexión del servo
-#define cerrada 11       // pin del led Rojo que indica puerta cerrada
-#define abierta 12       // pin del led Verde que indica puerta abierta
+#define ptaCerrada 11       // pin del led Rojo que indica puerta cerrada
+#define ptaAbierta 12       // pin del led Verde que indica puerta abierta
+#define abrir 180           // servo abrir = 180º
+#define cerrar 22            // servo cerrar = 0º
 const byte FILAS = 4;    // 4 FILAS
 const byte COLUMNAS = 4; // 4 COLUMNAS
 
 // OBJETOS Y VARIABLES GLOBALES -----------------
-// Servo ......................
+// Servo ...............................................................
 Servo cerradura;  // creo el objeto para controlar un servo
 int posicion = 0; // almacena la posicion del servo
                   // 0=abierto - 180=cerrada
-// Teclado ....................
+// Teclado .............................................................
 char keys[FILAS][COLUMNAS] = {
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
@@ -45,28 +47,29 @@ byte pinesColumnas[COLUMNAS] = {5, 4, 3, 2}; //conexión de las columnas 1-4
 
 Keypad teclado = Keypad(makeKeymap(keys), pinesFilas, pinesColumnas, FILAS, COLUMNAS); // creo el objeto para controlar el teclado
 
-unsigned long contador;
-unsigned long tiempoInicio;
-String mensaje="";
-
-//LCD
+//LCD ..................................................................
 LiquidCrystal_I2C lcd (0x3F, 16, 2);  //creo el objeto LCD dir. 0x3F
 
 // SETUP ----------------------------------------
 void setup()
 {
-  // inicicialización servo.......
+  // inicicialización servo..........................................
   cerradura.attach(servo); // pin en el que se conecta el servo
-  // inicialización pto serie ....
+  cerradura.write(cerrar);
+  // inicialización pto serie .......................................
   Serial.begin(9600);
   Serial.println ("Caja Fuerte... iniciando...");
-  // inicialización variables de tiempo
-  contador = 0;
-  tiempoInicio = millis();
-  // inicializar LCD
-  lcd.init(); //inicializo
+  // inicializar LCD ................................................
+  lcd.init(); //inicializo lcd
   lcd.backlight();  //enciendo luz de fondo
   lcd.print("- Caja Fuerte -");
+  // inicialización leds ............................................
+  pinMode(ptaAbierta, OUTPUT);    //led puerta abierta como salida
+  pinMode(ptaCerrada, OUTPUT);    //led puerta cerrada como salida
+  digitalWrite(ptaAbierta,LOW);   //apago led
+  digitalWrite(ptaCerrada,LOW);   //apago led
+
+
 
 } //fin_setup
 
@@ -80,11 +83,29 @@ void loop()
   char tecla=teclado.getKey();
   //si hay tecla pulsada la muestro por pto serie
   if (tecla){
-    mensaje="Tecla: " + tecla;
-    Serial.println (mensaje);
+    Serial.print(F("Tecla: "));
+    Serial.println (tecla);
     lcd.setCursor(0,1); //col=0, fila=1 (2ªlinea)
     lcd.print ("Tecla: ");
     lcd.print (tecla);
+  }
+  if (tecla=='1'){
+    digitalWrite(ptaAbierta, HIGH);
+  }
+  if (tecla=='2'){
+    digitalWrite(ptaCerrada, HIGH);
+  }
+  if (tecla=='*'){
+    digitalWrite(ptaAbierta, LOW);
+    digitalWrite(ptaCerrada, LOW);
+  }
+  if (tecla=='A')
+  {
+    cerradura.write(abrir);     //abrir cerradura
+  }
+  if (tecla=='C')
+  {
+    cerradura.write(cerrar);     //cerrar cerradura
   }
 
 } //fin_loop
