@@ -137,36 +137,6 @@ void loop()
     }
     limpiarDatos();
   }
-/*  
-  //leo tecla
-  char tecla=teclado.getKey();
-  //si hay tecla pulsada la muestro por pto serie
-  if (tecla){
-    Serial.print(F("Tecla: "));
-    Serial.println (tecla);
-    lcd.setCursor(0,1); //col=0, fila=1 (2ªlinea)
-    lcd.print ("Tecla: ");
-    lcd.print (tecla);
-  }
-  if (tecla=='1'){
-    digitalWrite(ptaAbierta, HIGH);
-  }
-  if (tecla=='2'){
-    digitalWrite(ptaCerrada, HIGH);
-  }
-  if (tecla=='*'){
-    digitalWrite(ptaAbierta, LOW);
-    digitalWrite(ptaCerrada, LOW);
-  }
-  if (tecla=='A')
-  {
-    cerradura.write(abrir);     //abrir cerradura
-  }
-  if (tecla=='C')
-  {
-    cerradura.write(cerrar);     //cerrar cerradura
-  }
-*/
 } //fin_loop
 
 void limpiarDatos()
