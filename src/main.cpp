@@ -26,8 +26,8 @@ Componentes:
 #define servo 10         // pin de conexión del servo
 #define ptaCerrada 11       // pin del led Rojo que indica puerta cerrada
 #define ptaAbierta 12       // pin del led Verde que indica puerta abierta
-#define abrir 180           // servo abrir = 180º
-#define cerrar 22           // servo cerrar = 0º
+#define abrir 22           // servo abrir = 180º
+#define cerrar 180           // servo cerrar = 0º
 #define longPassword 11     // longitud de la password: 10 caracteres
 const byte FILAS = 4;    // 4 FILAS
 const byte COLUMNAS = 4; // 4 COLUMNAS
@@ -149,7 +149,7 @@ void limpiarDatos()
   lcd.print("Introduce 10");
   lcd.setCursor(0,1); //col=0, fila=1 (2ªlinea)
   lcd.print("teclas password");
-  delay (5000);
+  delay (3000);
   lcd.clear();
   lcd.setCursor(0,0); //col=0, fila=0 (1ªlinea)
   lcd.print("Password:");
