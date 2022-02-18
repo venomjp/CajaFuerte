@@ -19,10 +19,14 @@
 
 <img alt="Caja acabada" style="border-width:0" src="imagenes/cajaFuerte_acabada.jpg" width="600" align = "center"/></a>
 
+## Esquema electrónico
+* "Pendiente"
 ## Código Arduino
 
+* Ha sido escrito en VSCode + PlatformIO
 
-# 
+
+
 # Licencia
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
 <img alt="Licencia Creative Commons" style="border-width:0" src="imagenes/by-sa.png" width="200" align = "center"/></a>
