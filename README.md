@@ -23,8 +23,7 @@
 * "Pendiente"
 ## Código Arduino
 
-* Ha sido escrito en VSCode + PlatformIO
-
+* Ha sido escrito en VSCode + PlatformIO para un Arduino UNO R3 con un Display LCD i2C y un teclado matricial de 4x4 teclas
 
 
 # Licencia
