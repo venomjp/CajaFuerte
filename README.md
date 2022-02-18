@@ -9,11 +9,16 @@
 
 ## Imágenes
 * Caja de cartón
+
 <img alt="De Cartón" style="border-width:0" src="imagenes/cajaDeCarton.jpg" width="600" align = "center"/></a>
+
 * Electrónica y Arduino
+
 <img alt="Electrónica y Arduino" style="border-width:0" src="imagenes/arduino.jpg" width="600" align = "center"/></a>
 * Caja acabada
+
 <img alt="Caja acabada" style="border-width:0" src="imagenes/cajaFuerte_acabada.jpg" width="600" align = "center"/></a>
+
 ## Código Arduino
 
 
