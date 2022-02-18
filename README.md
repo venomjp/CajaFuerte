@@ -27,4 +27,4 @@
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
 <img alt="Licencia Creative Commons" style="border-width:0" src="imagenes/by-sa.png" width="200" align = "center"/></a>
 
-<br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">prueba</span> por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Juan Pedro Perianes Rodríguez</span> se distribuye bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.
+<br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">**Caja Fuerte de Cartón**. </span> Por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Juan Pedro Perianes Rodríguez</span> se distribuye bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.
