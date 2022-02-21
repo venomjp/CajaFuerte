@@ -28,7 +28,7 @@ Esquema realizado en Fritzing que ilustra las conexiones entre los distintos ele
 * 2 LEDs
 * Power Bank (5V)
 
-<img alt="Caja acabada" style="border-width:0" src="imagenes/esquema.png" width="600" align = "center"/></a>
+<img alt="Esquema en fritzing" style="border-width:0" src="imagenes/Esquema.png" width="600" align = "center"/></a>
 
 ## Código Arduino
 
@@ -38,7 +38,7 @@ Esquema realizado en Fritzing que ilustra las conexiones entre los distintos ele
 
 * STLs de las distintas piezas en la carpeta "stl"
 
-<img alt="Caja acabada" style="border-width:0" src="imagenes/stl.png" width="600" align = "center"/></a>
+<img alt="STLs" style="border-width:0" src="imagenes/stl.png" width="600" align = "center"/></a>
 
 * El montaje se ha realizado con cajas de carton, las distintas piezas fabricadas en PLA, un par de bisagras y pintura gris.
 
