@@ -2,7 +2,7 @@
 * Este pequeño proyecto se utiliza en 
 <a rel="license" href="https://www.uc3m.es/secundaria/divulgacion-ciencia/viernes-tecnologicos">ElectroEscape: usa la electrónica para ser libre</a> dentro de los **Viernes Tecnológicos** organizados por la *Universidad Carlos III de Madrid*
 
-* Consiste en la fabricación de una caja fuerte "de cartón" y cuya apertura está controlada por un Arduino UNO.
+* Consiste en la fabricación de una caja fuerte "de cartón" y cuya apertura está controlada por un Arduino UNO, para lo que hay que introducir una combinación de 10 teclas.
 
 ## Idea
 <img alt="Idea" style="border-width:0" src="imagenes/cajaFuerte_idea.png" width="600" align = "center"/></a>
