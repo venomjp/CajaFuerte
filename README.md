@@ -20,10 +20,27 @@
 <img alt="Caja acabada" style="border-width:0" src="imagenes/cajaFuerte_acabada.jpg" width="600" align = "center"/></a>
 
 ## Esquema electrónico
-* "Pendiente"
+Esquema realizado en Fritzing que ilustra las conexiones entre los distintos elementos:
+* Arduino UNO Rev. 3
+* Teclado matricial de 4x4
+* LCD + i2C
+* Servo
+* 2 LEDs
+* Power Bank (5V)
+
+<img alt="Caja acabada" style="border-width:0" src="imagenes/esquema.png" width="600" align = "center"/></a>
+
 ## Código Arduino
 
-* Ha sido escrito en VSCode + PlatformIO para un Arduino UNO R3 con un Display LCD i2C y un teclado matricial de 4x4 teclas
+* Ha sido escrito en VSCode + PlatformIO para un Arduino UNO R3 con un Display LCD i2C y un teclado matricial de 4x4 teclas. Disponible en la carpeta "src".
+
+## Piezas realizadas con impresión 3D
+
+* STLs de las distintas piezas en la carpeta "stl"
+
+<img alt="Caja acabada" style="border-width:0" src="imagenes/stl.png" width="600" align = "center"/></a>
+
+* El montaje se ha realizado con cajas de carton, las distintas piezas fabricadas en PLA, un par de bisagras y pintura gris.
 
 
 # Licencia
