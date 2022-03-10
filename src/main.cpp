@@ -55,7 +55,7 @@ LiquidCrystal_I2C lcd (0x3F, 16, 2);  //creo el objeto LCD dir. 0x3F
 int contador=0;
 char tecla;
 char datos[longPassword];
-char passMaster[longPassword]="15A6*8D94B";
+char passMaster[longPassword]="09A65C7844";
 bool passCorrecta;
 bool cajaAbierta=false;     //indica caja cerrada
 
